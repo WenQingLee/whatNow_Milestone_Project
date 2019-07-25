@@ -1,49 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!--CSS stylesheet-->
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    
-    <!--FontAwesome-->
-    <script src="https://kit.fontawesome.com/af4d281973.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!--Axios CDN-->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!--CSS stylesheet-->
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-    <title>Trip Planner</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    
-    
-    
-    
-    
+  <!--FontAwesome-->
+  <script src="https://kit.fontawesome.com/af4d281973.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <!--Load Jasmine Framework-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine.js" integrity="sha256-A1UHgrQzApWh893FP9przUyLCugwbvsLPAEUStp1MKA=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine-html.min.js" integrity="sha256-TWtVbSAzfgF3emkFYXiduImcFgT9lOye0GU5s2p6a7c=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/boot.js" integrity="sha256-HG8TKl0T65NyELmbUoo0H7/a1e++smYdXXtuuEsyKok=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine.css" integrity="sha256-TTb3c5Z0pxgwRWHzGE700nLTMIOUNgkN2SGXqoflga0=" crossorigin="anonymous" />
+  <!--Axios CDN-->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <!--Load Tests-->
-    <script type="text/javascript" src="spec/scriptSpec.js"></script>
-    
-    <!--Load scripts-->
-    <script type="text/javascript" src="scripts/script.js"></script>
-  
-  </body>
+  <title>Trip Planner</title>
+</head>
+
+<body>
+
+  <!--Trip Planner Heading with background image-->
+  <header>
+    <div class="container-fluid my-auto" id="banner">
+      <div class="col web-title">
+        <h1><i class="fas fa-globe-asia"></i> Trip Planner</h1>
+        <h4>For your (last-minute) travel ideas</h4>
+      </div>
+    </div>
+  </header>
+
+  <!--Main containing search section, display section, googlemap and email section-->
+  <main>
+
+    <!--Search Section-->
+    <section>
+      <div class="container-fluid">
+        <form>
+
+          <!--Start and search location inputs-->
+          <div class="form-group row">
+            
+            <label for="start-location" class="col-sm-2 col-form-label">Start Location:</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="start-location" placeholder="E.g. Singapore">
+            </div>
+            
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-warning">Find me</button>
+            </div>
+            
+            <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
+            </div>
+            
+          </div>
+
+          <!--Radius search inputs-->
+          <div class="form-group row">
+            <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="search-radius" placeholder="E.g. 400">
+            </div>
+            <div class="col-sm-2">
+              <p>Type of Search: </p>
+            </div>
+            <!--Accommodations radio button-->
+            <div class="form-check col-sm-2">
+              <input class="form-check-input" type="checkbox" value="accommodations" id="accommodations">
+              <label class="form-check-label" for="accommodations">Accommodations</label>
+            </div>
+            <!--Attractions radio button-->
+            <div class="form-check col-sm-2">
+              <input class="form-check-input" type="checkbox" value="attractions" id="attractions">
+              <label class="form-check-label" for="attractions">Attractions</label>
+            </div>
+            <!--Bars and radio Restaurants button-->
+            <div class="form-check col-sm-2">
+              <input class="form-check-input" type="checkbox" value="bars-restaurants" id="bar-restaurants">
+              <label class="form-check-label" for="bars-restaurants">Bars and Restaurants</label>
+            </div>
+          </div>
+
+          <!--Search button-->
+          <div class="col" id="search-button">
+            <button type="button" class="btn btn-warning">Search!</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!--Display Section-->
+    <section>
+      <div class="row">
+
+        <!--Search Results-->
+        <div class="col-6">
+          <div class="row">
+            <div class="col-3" id="name">
+              Name
+            </div>
+            <div class="col-3" id="type">
+              Type
+            </div>
+            <div class="col-3" id="rating">
+              Rating
+            </div>
+            <div class="col-3" id="Opening Hours">
+              Opening Hours
+            </div>
+          </div>
+        </div>
+
+        <!--Google Map-->
+        <div class="col-6" id="map"></div>
+
+      </div>
+    </section>
+
+
+
+  </main>
+
+
+  <!--Footer with social media icons-->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <!--Social media icons-->
+        <div class="col my-auto">
+
+          <div class="sm-icon" id="social-media">
+            <a class="facebook1" href="https://www.facebook.com/ConstHub" target="_blank" title="Facebook" rel="nofollow">
+              <div class="facebook1"></div>
+            </a>
+            <a class="twitter1" href="https://twitter.com/ConstHub" target="_blank" title="Twitter" rel="nofollow">
+              <div class="twitter1"></div>
+            </a>
+            <a class="linkdin1" href="https://www.linkedin.com/in/ConstHub" target="_blank" title="Linkedin" rel="nofollow">
+              <div class="linkdin1"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!--Load Jasmine Framework-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine.js" integrity="sha256-A1UHgrQzApWh893FP9przUyLCugwbvsLPAEUStp1MKA=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine-html.min.js" integrity="sha256-TWtVbSAzfgF3emkFYXiduImcFgT9lOye0GU5s2p6a7c=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/boot.js" integrity="sha256-HG8TKl0T65NyELmbUoo0H7/a1e++smYdXXtuuEsyKok=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0/jasmine.css" integrity="sha256-TTb3c5Z0pxgwRWHzGE700nLTMIOUNgkN2SGXqoflga0=" crossorigin="anonymous" />
+
+  <!--Load Tests-->
+  <script type="text/javascript" src="spec/scriptSpec.js"></script>
+
+  <!--Load scripts-->
+  <script type="text/javascript" src="scripts/script.js"></script>
+
+</body>
+
 </html>

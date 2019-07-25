@@ -1,0 +1,68 @@
+html, body {
+    height:100%;
+}
+
+#banner {
+    background-image:url(../images/banner.jpg);
+}
+
+.web-title {
+    text-align: center;
+    color:white;
+    padding:50px;
+}
+
+
+
+
+
+
+
+/*style for rollover social media icons*/
+
+#social-media {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.facebook1 {
+    height: 50px;
+    width: 50px;
+    background: #314d91 url(../images/social-icons.png) no-repeat 0px 0px;
+    -webkit-transition: All 0.3s ease-out;
+    -moz-transition: All 0.3s ease-out;
+    -o-transition: All 0.3s ease-out;
+
+}
+
+.facebook1:hover {
+    background: #314d91 url(../images/social-icons.png) no-repeat 0px -73px;
+}
+
+.twitter1 {
+    height: 50px;
+    width: 50px;
+    background: #07beed url(../images/social-icons.png) no-repeat 0px -127px;
+    -webkit-transition: All 0.3s ease-out;
+    -moz-transition: All 0.3s ease-out;
+    -o-transition: All 0.3s ease-out;
+
+}
+
+.twitter1:hover {
+    background: #07beed url(../images/social-icons.png) no-repeat 0px -204px;
+}
+
+.linkdin1 {
+    height: 50px;
+    width: 50px;
+    background: #1698E3 url(../images/social-icons.png) no-repeat 0px -635px;
+    -webkit-transition: All 0.3s ease-out;
+    -moz-transition: All 0.3s ease-out;
+    -o-transition: All 0.3s ease-out;
+}
+
+.linkdin1:hover {
+    background: #1698e3 url(../images/social-icons.png) no-repeat 0px -711px;
+}
