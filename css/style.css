@@ -2,6 +2,8 @@ html, body {
     height:100%;
 }
 
+
+/*Header image*/
 #banner {
     background-image:url(../images/banner.jpg);
 }
@@ -13,6 +15,10 @@ html, body {
 }
 
 
+/*Google Map style*/
+#map {
+    height:600px;
+}
 
 
 

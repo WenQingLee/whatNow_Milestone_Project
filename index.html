@@ -50,7 +50,7 @@
             </div>
             
             <div class="col-sm-1">
-              <button type="button" class="btn btn-warning">Find me</button>
+              <button type="button" class="btn btn-warning" id="find-me">Find me</button>
             </div>
             
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
@@ -60,8 +60,9 @@
             
           </div>
 
-          <!--Radius search inputs-->
+          <!--Radius search inputs and radio buttons-->
           <div class="form-group row">
+            <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
             <div class="col-sm-2">
               <input type="text" class="form-control" id="search-radius" placeholder="E.g. 400">
@@ -168,6 +169,11 @@
 
   <!--Load Tests-->
   <script type="text/javascript" src="spec/scriptSpec.js"></script>
+  
+  <!--Google Maps API-->
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro&libraries=places&callback=initMap">
+    </script>
 
   <!--Load scripts-->
   <script type="text/javascript" src="scripts/script.js"></script>
