@@ -15,8 +15,15 @@ describe ("googleMap", function(){
    
    
    // Testing the geolocate function
-      // it("should return defined"), function(){
+      
+      describe("geolocate", function(){
+         // Test that geolocate is not null or undefined
+         it("geolocate() should not be null", function(){
+            expect(geolocate()).not.toEqual(null);
+         })
+      });
       // Test if the error message runs
+      
    
    
    // Testing the function for find me button 
@@ -24,6 +31,10 @@ describe ("googleMap", function(){
       // Test the button should run the function on click
       // Test that the function does not return null (Not.toBeNull())
       // Test the return of the function is placed in the start location field
+      
+      
+   // Testing the auto-complete function
+      // Test that the inputs autocomplete (Manually)
    
    
    

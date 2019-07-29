@@ -9,23 +9,28 @@ function initMap() {
 
     infoWindow = new google.maps.InfoWindow;
 
+    // To enable geolocation
     geolocate(infoWindow, map)
+    
+    // To enable auto-complete
+    autocomplete()
 
     return true;
 
 }
 
 
-/*To get the user's location
-*@param infowindow , map
-*Precondition: 
-*    infowindow: must be defined
-*    map:must be defined
-*    Post condition:
-*    geolocate: must return
-@ return google map location
+/*  
+*   To get the user's location
+*   @param infowindow , map
+*   Precondition: 
+*   infowindow: must be defined
+*   map: must be defined
+*   Post condition:
+*   geolocate: must return
+@   return google map location
 */
-function geolocate(infoWindow,map) {
+function geolocate(infoWindow, map) {
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -38,21 +43,24 @@ function geolocate(infoWindow,map) {
             infoWindow.setContent('You are here.');
             infoWindow.open(map);
             map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow);
         });
-        console.log ((navigator.geolocation))
     }
     else {
         // Browser doesn't support Geolocation
-        handleLocationError();
+        handleLocationError(false, infoWindow);
     }
 
 }
 
 
-// Function to handle location error
+/*  To handle browsers that don't support geolocation
+ *   Return error Message
+ */
 function handleLocationError() {
     // Alert message to key in the origin and destinations manually
-    $("#map").append("test")
+    $("#find-me").append("Google Map will not work properly as geolocation is not supported in this browser")
     alert("Geolocation is not supported by this browser.")
 }
 
@@ -65,30 +73,24 @@ $("#find-me").on("click", function() {
         zoom: 10,
     });
 
-
     infoWindow = new google.maps.InfoWindow;
 
-
     // geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    }
-    else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+    geolocate(infoWindow, map)
 
 });
 
+
+
+// Auto-complete function
+function autocomplete() {
+
+    // Autocomplete for start location
+    var autocompleteSearch = $("#start-location")[0]
+    new google.maps.places.Autocomplete(autocompleteSearch);
+
+    // Autocomplete for search location
+    var autocompleteSearch = $("#search-location")[0]
+    new google.maps.places.Autocomplete(autocompleteSearch);
+
+}
