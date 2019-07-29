@@ -68,6 +68,8 @@ The text for section Y was copied from the Wikipedia article Z
 - The photos used in this site were obtained from ...
 ### Acknowledgements
 I received inspiration for this project from X
+Unobtrusive JavaScript: https://blog.teamtreehouse.com/unobtrusive-javascript-important
+https://en.wikipedia.org/wiki/Unobtrusive_JavaScript
 Color Psychology
 https://sg.oberlo.com/blog/color-psychology-color-meanings
 color scheme:
@@ -76,3 +78,4 @@ Inspiration:
 https://www.awwwards.com/sites/my-walking-challenge
 FontAwesome
 * Rollover Social Media Icons: https://codepen.io/JunaidKhalid/pen/NxaZJw
+* 

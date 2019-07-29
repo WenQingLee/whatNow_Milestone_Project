@@ -1,4 +1,4 @@
-// Function to initialise Google Map
+// To initialise Google Map
 function initMap() {
 
     let map = new google.maps.Map(document.getElementById('map'), {
@@ -16,7 +16,15 @@ function initMap() {
 }
 
 
-// Geolocation function
+/*To get the user's location
+*@param infowindow , map
+*Precondition: 
+*    infowindow: must be defined
+*    map:must be defined
+*    Post condition:
+*    geolocate: must return
+@ return google map location
+*/
 function geolocate(infoWindow,map) {
 
     if (navigator.geolocation) {
@@ -31,6 +39,7 @@ function geolocate(infoWindow,map) {
             infoWindow.open(map);
             map.setCenter(pos);
         });
+        console.log ((navigator.geolocation))
     }
     else {
         // Browser doesn't support Geolocation
@@ -42,8 +51,9 @@ function geolocate(infoWindow,map) {
 
 // Function to handle location error
 function handleLocationError() {
-    // Alert message with reference to the fallback coordinates in the initMap function
-    alert("Geolocation is not enabled. You will now be transported to Singapore, an island city-state off Southern Malaysia.")
+    // Alert message to key in the origin and destinations manually
+    $("#map").append("test")
+    alert("Geolocation is not supported by this browser.")
 }
 
 
@@ -81,3 +91,4 @@ $("#find-me").on("click", function() {
     }
 
 });
+
