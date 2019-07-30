@@ -10,14 +10,29 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow;
 
     // To enable geolocation
-    geolocate(infoWindow, map)
-    
-    // To enable auto-complete
-    autocomplete()
+    geolocate(infoWindow, map);
 
+    // To enable auto-complete
+    autocomplete();
+    
     return true;
 
 }
+
+
+// To create markers on the map
+function createMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
 
 
 /*  
@@ -65,8 +80,7 @@ function handleLocationError() {
 }
 
 
-// Function for find me button
-
+//  To locate the user's position if geolocation is enabled
 $("#find-me").on("click", function() {
 
     let map = new google.maps.Map(document.getElementById('map'), {
@@ -81,16 +95,60 @@ $("#find-me").on("click", function() {
 });
 
 
+// To search based on user input with the search button
+$("#search-button").on("click", function() {
+    alert("test")
 
-// Auto-complete function
+    let singapore = new google.maps.LatLng(1.290270, 103.851959);
+
+    infowindow = new google.maps.InfoWindow();
+    
+
+    map = new google.maps.Map(
+        document.getElementById('map'), { center: singapore, zoom: 15 });
+    
+    console.log($("#search-location").val())
+    
+    var request = {
+        query: $("#search-location").val(),
+        fields: ['name', 'geometry'],
+    };
+
+    service = new google.maps.places.PlacesService(map);
+
+    service.findPlaceFromQuery(request, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+
+            map.setCenter(results[0].geometry.location);
+        }
+    });
+
+});
+
+
+
+
+
+
+// To search for details on the new location
+$("#search-button").on("click", function() {
+    alert("test")
+    directionsRequest(map, autocomplete)
+});
+
+
+//  To auto-complete entries into the start and search location fields
 function autocomplete() {
 
-    // Autocomplete for start location
-    var autocompleteSearch = $("#start-location")[0]
-    new google.maps.places.Autocomplete(autocompleteSearch);
+    //  Autocomplete for start location
+    let autocompleteStart = $("#start-location")[0];
+    var autocompletedStart = new google.maps.places.Autocomplete(autocompleteStart);
 
-    // Autocomplete for search location
-    var autocompleteSearch = $("#search-location")[0]
-    new google.maps.places.Autocomplete(autocompleteSearch);
+    //  Autocomplete for search location
+    let autocompleteSearch = $("#search-location")[0];
+    var autocompletedSearch = new google.maps.places.Autocomplete(autocompleteSearch);
 
 }

@@ -43,24 +43,24 @@
 
           <!--Start and search location inputs-->
           <div class="form-group row">
-            
+
             <label for="start-location" class="col-sm-2 col-form-label">Start Location:</label>
             <div class="col-sm-3">
               <input type="text" class="form-control" id="start-location" placeholder="E.g. Singapore">
             </div>
-            
+
             <div class="col-sm-1">
               <button type="button" class="btn btn-warning" id="find-me">Find me</button>
             </div>
-            
+
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
             <div class="col-sm-3">
               <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
             </div>
-            
+
           </div>
 
-          <!--Radius search inputs and radio buttons-->
+          <!--Radius search inputs and checkbox buttons-->
           <div class="form-group row">
             <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
@@ -70,26 +70,27 @@
             <div class="col-sm-2">
               <p>Type of Search: </p>
             </div>
-            <!--Accommodations radio button-->
+            <!--Accommodations checkbox-->
             <div class="form-check col-sm-2">
               <input class="form-check-input" type="checkbox" value="accommodations" id="accommodations">
               <label class="form-check-label" for="accommodations">Accommodations</label>
             </div>
-            <!--Attractions radio button-->
+            <!--Attractions checkbox-->
             <div class="form-check col-sm-2">
               <input class="form-check-input" type="checkbox" value="attractions" id="attractions">
               <label class="form-check-label" for="attractions">Attractions</label>
             </div>
-            <!--Bars and radio Restaurants button-->
+            <!--Bars and radio Restaurants checkbox-->
             <div class="form-check col-sm-2">
               <input class="form-check-input" type="checkbox" value="bars-restaurants" id="bar-restaurants">
               <label class="form-check-label" for="bars-restaurants">Bars and Restaurants</label>
             </div>
           </div>
 
+
           <!--Search button-->
-          <div class="col" id="search-button">
-            <button type="button" class="btn btn-warning">Search!</button>
+          <div class="col">
+            <button type="button" class="btn btn-warning" id="search-button">Search!</button>
           </div>
 
         </form>
@@ -162,9 +163,9 @@
 
 
   <!--Google Maps API-->
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro&libraries=places&callback=initMap">
-    </script>
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro&libraries=places&callback=initMap">
+  </script>
 
   <!--Load scripts-->
   <script type="text/javascript" src="scripts/script.js"></script>

@@ -35,6 +35,12 @@ describe ("googleMap", function(){
       
    // Testing the auto-complete function
       // Test that the inputs autocomplete (Manually)
+      
+   // Testing the marker function
+      // Check that the marker is placed (Manually)
+      
+   // Testing the search function
+      // Test that the inputs are working
    
    
    
