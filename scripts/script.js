@@ -115,26 +115,9 @@ $("#search-button").on("click", function() {
     infowindow = new google.maps.InfoWindow();
 
     searchLocation(defaultPlace);
-    
-    
-    // // geocoding
-    // geocoder = new google.maps.Geocoder();
-    
-    // let searchAddress = $("#search-location").val()
-    
-    // geocoder.geocode({"address": searchAddress}, function(results, status){
-    //     if (status == "OK"){
-    //         let searchLat = results[0].geometry.location.lat();
-    //         let searchLng = results[0].geometry.location.lng();
-    //         console.log(searchLat + ", " + searchLng);
-    //     } else {
-    //         alert('Geocode was not successful for the following reason: ' + status);
-    //     }
-        
-    // });
-    
+
     radiusAttractions();
-    
+
 
 });
 
@@ -143,14 +126,14 @@ $("#search-button").on("click", function() {
 function searchLocation(defaultPlace) {
     map = new google.maps.Map(
         document.getElementById('map'), { center: defaultPlace, zoom: 15 });
-        
+
     var request = {
         query: $("#search-location").val(),
         fields: ['name', 'geometry'],
     };
 
     service = new google.maps.places.PlacesService(map);
-    
+
     service.findPlaceFromQuery(request, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -160,49 +143,84 @@ function searchLocation(defaultPlace) {
             map.setCenter(results[0].geometry.location);
         }
     });
-    
+
 }
 
 
 // to locate nearby attractions
 function radiusAttractions() {
 
-    // test start
-    
+
     geocoder = new google.maps.Geocoder();
-    
+
     let searchAddress = $("#search-location").val()
-    
-    geocoder.geocode({"address": searchAddress}, function(results, status){
-        if (status == "OK"){
+
+    geocoder.geocode({ "address": searchAddress }, function(results, status) {
+        if (status == "OK") {
             let searchLat = results[0].geometry.location.lat();
             let searchLng = results[0].geometry.location.lng();
-            let searchCoords = searchLat + ", " + searchLng;
-            console.log(searchCoords);
-            
-            let searchLoc = new google.maps.LatLng(searchCoords);
-            
-            } else {
+
+            let searchLoc = new google.maps.LatLng(searchLat, searchLng);
+
+            // To determine the radio button depressed
+            var searchType;
+            if ($("#lodging").is(":checked")) {
+                alert("lodging is checked")
+                let searchType = ["lodging"];
+                console.log(searchType)
+                // To find nearby searches
+                var request = {
+                    location: searchLoc,
+                    radius: $("#search-radius").val(),
+                    type: searchType
+                };
+
+                service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, callback);
+            }
+            else if ($("#attractions").is(":checked")) {
+                alert("attractions is checked")
+                let searchType = ["museum"];
+                console.log(searchType)
+                // To find nearby searches
+                var request = {
+                    location: searchLoc,
+                    radius: $("#search-radius").val(),
+                    type: searchType
+                };
+
+                service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, callback);
+            }
+            else if ($("#restaurant").is(":checked")) {
+                alert("restaurant is checked")
+                let searchType = ["restaurant"];
+                console.log(searchType)
+                // To find nearby searches
+                var request = {
+                    location: searchLoc,
+                    radius: $("#search-radius").val(),
+                    type: searchType
+                };
+
+                service = new google.maps.places.PlacesService(map);
+                service.nearbySearch(request, callback);
+            }
+
+            console.log(searchType);
+
+
+
+
+        }
+        else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
-        
-        
+
     });
-    
-    
-    let marinaBarrage = new google.maps.LatLng(1.2805282,103.87117469999998);
-    
-    // test end
 
-    var request = {
-        location: marinaBarrage,
-        radius: '1000',
-        type: ['restaurant']
-    };
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
 }
+
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {

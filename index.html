@@ -60,7 +60,7 @@
 
           </div>
 
-          <!--Radius search inputs and checkbox buttons-->
+          <!--Radius search inputs and radio buttons-->
           <div class="form-group row">
             <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
@@ -70,23 +70,25 @@
             <div class="col-sm-2">
               <p>Type of Search: </p>
             </div>
-            <!--Accommodations checkbox-->
+            <!--Accommodations radio button-->
             <div class="form-check col-sm-2">
-              <input class="form-check-input" type="checkbox" value="accommodations" id="accommodations">
-              <label class="form-check-label" for="accommodations">Accommodations</label>
+              <label class="form-check-label" for="lodging">
+                <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging">Lodgings
+              </label>
             </div>
-            <!--Attractions checkbox-->
+            <!--Attractions radio button-->
             <div class="form-check col-sm-2">
-              <input class="form-check-input" type="checkbox" value="attractions" id="attractions">
-              <label class="form-check-label" for="attractions">Attractions</label>
+              <label class="form-check-label" for="attractions">
+                <input class="form-check-input" type="radio" value="attractions" name="search-opt" id="attractions" checked>Attractions
+              </label>
             </div>
-            <!--Bars and radio Restaurants checkbox-->
+            <!--Bars and radio Restaurants radio button-->
             <div class="form-check col-sm-2">
-              <input class="form-check-input" type="checkbox" value="bars-restaurants" id="bar-restaurants">
-              <label class="form-check-label" for="bars-restaurants">Bars and Restaurants</label>
+              <label class="form-check-label" for="bars-restaurants">
+                <input class="form-check-input" type="radio" value="restaurant" name="search-opt" id="restaurant">Restaurants
+              </label>
             </div>
           </div>
-
 
           <!--Search button-->
           <div class="col">
