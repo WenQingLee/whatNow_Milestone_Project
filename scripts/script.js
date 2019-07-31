@@ -14,7 +14,7 @@ function initMap() {
 
     // To enable auto-complete
     autocomplete();
-    
+
     return true;
 
 }
@@ -32,7 +32,6 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
 
 
 /*  
@@ -79,6 +78,19 @@ function handleLocationError() {
     alert("Geolocation is not supported by this browser.")
 }
 
+//  To auto-complete entries into the start and search location fields
+function autocomplete() {
+
+    //  Autocomplete for start location
+    let autocompleteStart = $("#start-location")[0];
+    var autocompletedStart = new google.maps.places.Autocomplete(autocompleteStart);
+
+    //  Autocomplete for search location
+    let autocompleteSearch = $("#search-location")[0];
+    var autocompletedSearch = new google.maps.places.Autocomplete(autocompleteSearch);
+
+}
+
 
 //  To locate the user's position if geolocation is enabled
 $("#find-me").on("click", function() {
@@ -97,25 +109,48 @@ $("#find-me").on("click", function() {
 
 // To search based on user input with the search button
 $("#search-button").on("click", function() {
-    alert("test")
 
-    let singapore = new google.maps.LatLng(1.290270, 103.851959);
+    let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
 
     infowindow = new google.maps.InfoWindow();
+
+    searchLocation(defaultPlace);
+    
+    
+    // // geocoding
+    // geocoder = new google.maps.Geocoder();
+    
+    // let searchAddress = $("#search-location").val()
+    
+    // geocoder.geocode({"address": searchAddress}, function(results, status){
+    //     if (status == "OK"){
+    //         let searchLat = results[0].geometry.location.lat();
+    //         let searchLng = results[0].geometry.location.lng();
+    //         console.log(searchLat + ", " + searchLng);
+    //     } else {
+    //         alert('Geocode was not successful for the following reason: ' + status);
+    //     }
+        
+    // });
+    
+    radiusAttractions();
     
 
+});
+
+
+// To search based on user input
+function searchLocation(defaultPlace) {
     map = new google.maps.Map(
-        document.getElementById('map'), { center: singapore, zoom: 15 });
-    
-    console.log($("#search-location").val())
-    
+        document.getElementById('map'), { center: defaultPlace, zoom: 15 });
+        
     var request = {
         query: $("#search-location").val(),
         fields: ['name', 'geometry'],
     };
 
     service = new google.maps.places.PlacesService(map);
-
+    
     service.findPlaceFromQuery(request, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -125,30 +160,55 @@ $("#search-button").on("click", function() {
             map.setCenter(results[0].geometry.location);
         }
     });
-
-});
-
-
+    
+}
 
 
+// to locate nearby attractions
+function radiusAttractions() {
 
+    // test start
+    
+    geocoder = new google.maps.Geocoder();
+    
+    let searchAddress = $("#search-location").val()
+    
+    geocoder.geocode({"address": searchAddress}, function(results, status){
+        if (status == "OK"){
+            let searchLat = results[0].geometry.location.lat();
+            let searchLng = results[0].geometry.location.lng();
+            let searchCoords = searchLat + ", " + searchLng;
+            console.log(searchCoords);
+            
+            let searchLoc = new google.maps.LatLng(searchCoords);
+            
+            } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        
+        
+    });
+    
+    
+    let marinaBarrage = new google.maps.LatLng(1.2805282,103.87117469999998);
+    
+    // test end
 
-// To search for details on the new location
-$("#search-button").on("click", function() {
-    alert("test")
-    directionsRequest(map, autocomplete)
-});
+    var request = {
+        location: marinaBarrage,
+        radius: '1000',
+        type: ['restaurant']
+    };
 
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
 
-//  To auto-complete entries into the start and search location fields
-function autocomplete() {
-
-    //  Autocomplete for start location
-    let autocompleteStart = $("#start-location")[0];
-    var autocompletedStart = new google.maps.places.Autocomplete(autocompleteStart);
-
-    //  Autocomplete for search location
-    let autocompleteSearch = $("#search-location")[0];
-    var autocompletedSearch = new google.maps.places.Autocomplete(autocompleteSearch);
-
+function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+            createMarker(results[i]);
+        }
+    }
 }
