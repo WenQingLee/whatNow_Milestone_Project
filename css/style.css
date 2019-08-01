@@ -14,6 +14,22 @@ html, body {
     padding:50px;
 }
 
+/*padding for search section*/
+.search-section{
+    padding:10px;
+}
+
+/*alignment for search button*/
+.search-button{
+    text-align:center;
+}
+
+
+/*Results Display Style*/
+.display{
+    height:600px;
+    overflow:scroll;
+}
 
 /*Google Map style*/
 #map {
@@ -21,7 +37,11 @@ html, body {
 }
 
 
-
+/*footer style*/
+.foot{
+    background-color:black;
+    padding:10px;
+}
 
 
 /*style for rollover social media icons*/

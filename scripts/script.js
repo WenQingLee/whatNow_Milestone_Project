@@ -147,11 +147,12 @@ function radiusAttractions() {
                 var request = {
                     location: searchLoc,
                     radius: $("#search-radius").val(),
-                    type: searchType
+                    type: searchType,
+                    rankBy: google.maps.places.RankBy.PROMINENCE,
                 };
 
                 service = new google.maps.places.PlacesService(map);
-                service.nearbySearch(request, callback);
+                service.nearbySearch(request, nearbyMarkers);
 
         }
         else {
@@ -164,10 +165,23 @@ function radiusAttractions() {
 
 
 // To create the markers for nearby attractions
-function callback(results, status) {
+function nearbyMarkers(results, status) {
+    
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             var place = results[i];
+            
+            // append the details of the results in the display
+            let num=i+1;
+            
+            $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
+            
+            // $("#name").append("<td>"+ place.name +"</td>")
+            // $("#display-results").append("<td>" + place.types + "</td>")
+            // $("#display-results").append("<td>" + place.rating + "</td></tr>")
+            // $("#opening-hours").append("<td>" + place.opening_hours.open_now + "</td>")
+            console.log(place.vicinity)
+            // console.log(place.opening_hours.open_now)
             createMarker(results[i]);
         }
     }
@@ -177,24 +191,23 @@ function callback(results, status) {
 // To check the search radio button selected
 function typeCheck() {
     if ($("#lodging").is(":checked")) {
-        let searchType = ["lodging"];
-        return searchType;
+        return $("#lodging").val();
     }
     else if ($("#museum").is(":checked")) {
-        let searchType = ["museum"];
-        return searchType;
+        return $("#museum").val();
     }
     else if ($("#art-gallery").is(":checked")) {
-        let searchType = ["art_gallery"];
-        return searchType;
+        return $("#art-gallery").val();
     }
     else if ($("#restaurant").is(":checked")) {
-        let searchType = ["restaurant"];
-        return searchType;
+        return $("#restaurant").val();
     }
     else if ($("#shopping-mall").is(":checked")) {
-        let searchType = ["shopping_mall"];
-        return searchType;
+        return $("#shopping-mall").val();
     }
     
 }
+
+
+
+

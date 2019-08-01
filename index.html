@@ -38,7 +38,7 @@
 
     <!--Search Section-->
     <section>
-      <div class="container-fluid">
+      <div class="container-fluid search-section">
         <form>
 
           <!--Start and search location inputs-->
@@ -46,17 +46,17 @@
             <!--Search Location Input-->
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
+              <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore" required>
             </div>
             <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" id="search-radius" placeholder="E.g. 400">
+              <input type="number" class="form-control" id="search-radius" placeholder="E.g. 400" required>
             </div>
           </div>
 
-          <!--Radius search inputs and radio buttons-->
-          <div class="form-group row">
+          <!--Type of search radio buttons-->
+          <div class="form-group row mx-auto">
             <div class="col-sm-2">
               <p>Type of Search: </p>
             </div>
@@ -95,7 +95,7 @@
           </div>
 
           <!--Search button-->
-          <div class="col">
+          <div class="col search-button">
             <button type="button" class="btn btn-warning" id="search-button">Search!</button>
           </div>
 
@@ -106,27 +106,38 @@
     <!--Display Section-->
     <section>
       <div class="row">
+        
+        <!--Google Map-->
+        <div class="col-lg-6" id="map">&nbsp</div>
 
         <!--Search Results-->
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3" id="name">
-              Name
-            </div>
-            <div class="col-3" id="type">
-              Type
-            </div>
-            <div class="col-3" id="rating">
-              Rating
-            </div>
-            <div class="col-3" id="Opening Hours">
-              Opening Hours
-            </div>
-          </div>
+        <div class="col-lg-6 display">
+          
+          <table class="table">
+            
+            <thead>
+              <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Rating</th>
+                <!--<th scope="col">Opening Hours</th>-->
+              </tr>
+            </thead>
+            
+            <tbody id="display-results">
+              <!--<td id="name"></td>-->
+              <!--<td id="type"></td>-->
+              <!--<td id="rating"></td>-->
+              <!--<td id="opening-hours"></td>-->
+              
+            </tbody>
+            
+          </table>
+          
         </div>
 
-        <!--Google Map-->
-        <div class="col-6" id="map">&nbsp</div>
+        
 
       </div>
     </section>
@@ -137,7 +148,7 @@
 
   <!--Footer with social media icons-->
   <footer>
-    <div class="container-fluid">
+    <div class="container-fluid foot">
       <div class="row">
         <!--Social media icons-->
         <div class="col my-auto">
