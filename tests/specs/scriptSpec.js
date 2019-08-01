@@ -3,7 +3,6 @@ describe("googleMap", function() {
 
    //  Testing for initMap function
    describe("googleMapInit function", function() {
-
       // Test if the function initMap runs
       it("initMap function should return true", function() {
          expect(initMap()).toBe(true);
@@ -15,7 +14,6 @@ describe("googleMap", function() {
 
 
    // Testing the geolocate function
-
    describe("geolocate", function() {
       // Test that geolocate is not null or undefined
       it("geolocate() should not be null", function() {
@@ -23,7 +21,24 @@ describe("googleMap", function() {
       });
 
    });
-   // Test if the error message runs
+   
+   // Testing the handleLocationError
+   describe("handleLocationError", function(){
+      // Test if it returns the correct alert message
+      it("handleLocationError should have an alert", function(){
+         expect(handleLocationError()).toBe(alert("Please enable geolocation for the best experience."))
+      });
+   });
+   
+   
+   // Testing the autocomplete function
+   describe("autocomplete", function(){
+      // Test that autocomplete is not null or undefined
+      it("autocomplete should return a correct value", function(){
+         expect(autocomplete()).not.toEqual(null)
+      })
+      
+   })
 
 
 

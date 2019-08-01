@@ -42,52 +42,56 @@
         <form>
 
           <!--Start and search location inputs-->
-          <div class="form-group row">
-
-            <label for="start-location" class="col-sm-2 col-form-label">Start Location:</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" id="start-location" placeholder="E.g. Singapore">
-            </div>
-
-            <div class="col-sm-1">
-              <button type="button" class="btn btn-warning" id="find-me">Find me</button>
-            </div>
-
+          <div class="form-group row mx-auto">
+            <!--Search Location Input-->
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
             </div>
-
-          </div>
-
-          <!--Radius search inputs and radio buttons-->
-          <div class="form-group row">
             <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
             <div class="col-sm-2">
               <input type="text" class="form-control" id="search-radius" placeholder="E.g. 400">
             </div>
+          </div>
+
+          <!--Radius search inputs and radio buttons-->
+          <div class="form-group row">
             <div class="col-sm-2">
               <p>Type of Search: </p>
             </div>
-            <!--Accommodations radio button-->
+            <!--Lodgings radio button-->
             <div class="form-check col-sm-2">
               <label class="form-check-label" for="lodging">
                 <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging">Lodgings
               </label>
             </div>
-            <!--Attractions radio button-->
+            <!--Museums radio button-->
             <div class="form-check col-sm-2">
-              <label class="form-check-label" for="attractions">
-                <input class="form-check-input" type="radio" value="attractions" name="search-opt" id="attractions" checked>Attractions
+              <label class="form-check-label" for="museum">
+                <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum" checked>Museums
               </label>
             </div>
-            <!--Bars and radio Restaurants radio button-->
+            
             <div class="form-check col-sm-2">
-              <label class="form-check-label" for="bars-restaurants">
+              <label class="form-check-label" for="art-gallery">
+                <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery" checked>Art Galleries
+              </label>
+            </div>
+            
+            <!--Restaurants radio button-->
+            <div class="form-check col-sm-2">
+              <label class="form-check-label" for="restaurant">
                 <input class="form-check-input" type="radio" value="restaurant" name="search-opt" id="restaurant">Restaurants
               </label>
             </div>
+            <!--Shopping malls radio button-->
+            <div class="form-check col-sm-2">
+              <label class="form-check-label" for="shopping-mall">
+                <input class="form-check-input" type="radio" value="shopping_mall" name="search-opt" id="shopping-mall">Shopping Malls
+              </label>
+            </div>
+            
           </div>
 
           <!--Search button-->
