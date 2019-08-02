@@ -29,6 +29,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
+        icon: "images/position.png"
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -38,12 +39,16 @@ function createMarker(place) {
 }
 
 // To create markers on the map
-function createNearbyMarker(place) {
+function createNearbyMarker(place, num) {
+    
+    // testing to pass number in, if not used, remove as function parameter
+    console.log(num)
+    
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/' + 'info-i_maps.png',
         animation: google.maps.Animation.DROP,
+        label: num.toString()
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -196,7 +201,7 @@ function nearbyMarkers(results, status) {
 
             $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
 
-            createNearbyMarker(results[i]);
+            createNearbyMarker(results[i], num);
         }
     }
 }

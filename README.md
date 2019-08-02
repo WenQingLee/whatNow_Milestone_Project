@@ -1,4 +1,4 @@
-# whatNow? - Navigation on the go!
+# whatNow? - Navigation on the go! 
 
 Milestone project: Interactive Frontend Development
 
@@ -20,15 +20,25 @@ The website will aim to be as resource-light as possible to account for travelle
 
 The design scope and skeleton of this project is included in this project under the directory, "scope and skeleton".
 
+The logo is of a compass and is to reassure the user that they will find the direction they want by using this website. The wave SVG used is to reflect motion and the user's probable state. The color orange is also used in the header to convey a sense of enthusiasm and adventure.
+
 The interface is kept as clean as possible, where only necesssary components (e.g. input and display fields) are part of the website as we expect users do not wish to comb the website for what they want and to want quick responses since they are on the go. In addition, the number of radio buttons were capped at 5 to prevent overchoice (i.e. cognitive process in which people have a difficult time making a decision when faced with many options).
 
-The layout of the website starts with the search inputs, leading to the results display and finally the links to social media at the bottom of the website as we seek to guide the user through a flow of: (1) Search, (2) View results, (3) Share.
-
-As a user type, I want to perform an action, so that I can achieve a goal.
+The layout of the website starts with the search inputs, leading to the results display and finally the links to social media at the bottom of the website as we seek to guide the user through a flow of: (1) Search, (2) View results and, (3) Share. The initial design intent was to also include a send email function but later decided against it as it is archaic for such informal use, therefore likely to see limited use.
 
 To improve interactivity, we have considered using event listeners or buttons but have decided to develop using buttons instead. Using a button provides the user with a greater control over their search results especially when the website is used on a mobile phone where an errant click may result in the search results changing.
 
 ## Features
+
+### Existing Features
+1. Geolocation:
+The user's location is show on the map when it initialises before a search is conducted. (Requires permission to use geolocation)
+2. Search location input:
+Lets the user specify the search location
+2. Radius of Search input:
+Lets the user decide the radius of their search
+3. 
+
 In this section, you should go over the different parts of your project, and describe each in a sentence or so.
 
 ### Existing Features
@@ -97,5 +107,7 @@ Inspiration:
 https://www.awwwards.com/sites/my-walking-challenge
 FontAwesome
 * Rollover Social Media Icons: https://codepen.io/JunaidKhalid/pen/NxaZJw
-SVG backgrounds
+* SVG backgrounds
 * SVG image for header banner: https://www.svgbackgrounds.com/?ref=producthunt 
+* Icons8
+* icon for google map: https://icons8.com/icons/set/person
