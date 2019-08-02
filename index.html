@@ -18,7 +18,7 @@
   <!--Axios CDN-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <title>Trip Planner</title>
+  <title>whatNow? Navigation on the go!</title>
 </head>
 
 <body>
@@ -27,8 +27,8 @@
   <header>
     <div class="container-fluid my-auto" id="banner">
       <div class="col web-title">
-        <h1><i class="fas fa-globe-asia"></i> Trip Planner</h1>
-        <h4>For your (last-minute) travel ideas</h4>
+        <img src ="images/whatnow-logo.png" alt="Logo of 'whatNow?', sightseeing on the go!">
+        <hr />
       </div>
     </div>
   </header>
@@ -63,19 +63,19 @@
             <!--Lodgings radio button-->
             <div class="form-check col-sm-2">
               <label class="form-check-label" for="lodging">
-                <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging">Lodgings
+                <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging" checked>Lodgings
               </label>
             </div>
             <!--Museums radio button-->
             <div class="form-check col-sm-2">
               <label class="form-check-label" for="museum">
-                <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum" checked>Museums
+                <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum">Museums
               </label>
             </div>
             
             <div class="form-check col-sm-2">
               <label class="form-check-label" for="art-gallery">
-                <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery" checked>Art Galleries
+                <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery">Art Galleries
               </label>
             </div>
             
@@ -98,6 +98,11 @@
           <div class="col search-button">
             <button type="button" class="btn btn-warning" id="search-button">Search!</button>
           </div>
+          
+          <!--Reset button-->
+          <!--<div class="col search-button">-->
+          <!--  <button type="button" class="btn btn-warning" id="reset-button">Reset!</button>-->
+          <!--</div>-->
 
         </form>
       </div>
@@ -179,13 +184,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
+  
+  <!--Load scripts-->
+  <script type="text/javascript" src="scripts/script.js"></script>
+
   <!--Google Maps API-->
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro&libraries=places&callback=initMap">
   </script>
 
-  <!--Load scripts-->
-  <script type="text/javascript" src="scripts/script.js"></script>
 
 </body>
 

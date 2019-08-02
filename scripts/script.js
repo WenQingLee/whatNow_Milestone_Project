@@ -1,7 +1,10 @@
+// // Declaring the global variable map for testing
+// let map = {};
+
 // To initialise Google Map
 function initMap() {
 
-    let map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         // Fallback location for the map if geolocation is not enabled
         center: { lat: 1.290270, lng: 103.851959 },
         zoom: 10,
@@ -14,7 +17,7 @@ function initMap() {
 
     // To enable auto-complete
     autocomplete();
-    
+
     // Used for Jasmine Testing
     return true;
 
@@ -25,7 +28,22 @@ function initMap() {
 function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
-        position: place.geometry.location
+        position: place.geometry.location,
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
+// To create markers on the map
+function createNearbyMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/' + 'info-i_maps.png',
+        animation: google.maps.Animation.DROP,
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -96,6 +114,8 @@ $("#search-button").on("click", function() {
 
     infowindow = new google.maps.InfoWindow();
 
+    resetDisplay();
+
     searchLocation(defaultPlace);
 
     radiusAttractions();
@@ -106,7 +126,7 @@ $("#search-button").on("click", function() {
 // To search based on user input
 function searchLocation(defaultPlace) {
     map = new google.maps.Map(
-        document.getElementById('map'), { center: defaultPlace, zoom: 15 });
+        document.getElementById('map'), { zoom: 15 });
 
     var request = {
         query: $("#search-location").val(),
@@ -141,18 +161,18 @@ function radiusAttractions() {
             let searchLng = results[0].geometry.location.lng();
 
             let searchLoc = new google.maps.LatLng(searchLat, searchLng);
-            
+
             let searchType = typeCheck();
 
-                var request = {
-                    location: searchLoc,
-                    radius: $("#search-radius").val(),
-                    type: searchType,
-                    rankBy: google.maps.places.RankBy.PROMINENCE,
-                };
+            var request = {
+                location: searchLoc,
+                radius: $("#search-radius").val(),
+                type: searchType,
+                rankBy: google.maps.places.RankBy.PROMINENCE,
+            };
 
-                service = new google.maps.places.PlacesService(map);
-                service.nearbySearch(request, nearbyMarkers);
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, nearbyMarkers);
 
         }
         else {
@@ -166,23 +186,17 @@ function radiusAttractions() {
 
 // To create the markers for nearby attractions
 function nearbyMarkers(results, status) {
-    
+
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             var place = results[i];
-            
+
             // append the details of the results in the display
-            let num=i+1;
-            
+            let num = i + 1;
+
             $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
-            
-            // $("#name").append("<td>"+ place.name +"</td>")
-            // $("#display-results").append("<td>" + place.types + "</td>")
-            // $("#display-results").append("<td>" + place.rating + "</td></tr>")
-            // $("#opening-hours").append("<td>" + place.opening_hours.open_now + "</td>")
-            console.log(place.vicinity)
-            // console.log(place.opening_hours.open_now)
-            createMarker(results[i]);
+
+            createNearbyMarker(results[i]);
         }
     }
 }
@@ -205,9 +219,28 @@ function typeCheck() {
     else if ($("#shopping-mall").is(":checked")) {
         return $("#shopping-mall").val();
     }
-    
+
 }
 
 
+// $("#reset-button").on("click", function() {
+
+//     resetDisplay();
+//     clearMarkers();
+
+// });
 
 
+function resetDisplay() {
+    $("#display-results").empty()
+}
+
+
+// function clearMarkers() {
+//  for (var i = 0; i < markers.length; i++) {
+//   if (markers[i]) {
+//   markers[i].setMap(null);
+//   }
+//  }
+//  markers = [];
+// }
