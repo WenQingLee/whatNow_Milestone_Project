@@ -111,16 +111,30 @@ function autocomplete() {
 
 // To search based on user input with the search button
 $("#search-button").on("click", function() {
-
+    
+    resetDisplay();
+    
+    // Added error handling for user input fields
+    
+    if( $("#search-location").val() && $("#search-radius").val() ){
+        
     let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
 
     infowindow = new google.maps.InfoWindow();
 
-    resetDisplay();
 
     searchLocation(defaultPlace);
 
     radiusAttractions();
+        
+        
+    } else {
+        
+        
+        alert("Please fill up both the search location and radius of search before clicking the search button")
+        
+    }
+
 
 });
 
