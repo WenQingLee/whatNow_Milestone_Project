@@ -1,5 +1,14 @@
-// // Declaring the global variable map for testing
-// let map = {};
+// To toggle the show/hide details button to display the search details
+$("#show-details").on("click", function() {
+    if ($(".display")[0].style.height === "0px") {
+        $(".display")[0].style.height = "600px";
+    }
+    else {
+        $(".display")[0].style.height = "0px";
+    }
+});
+
+// Higher order functions for googlemap initialisation and form buttons
 
 // To initialise Google Map
 function initMap() {
@@ -23,45 +32,40 @@ function initMap() {
 
 }
 
+// function for locate me button
+$("#locate-me-button").on("click", function() {
+    geolocateResult();
+});
 
-// To create markers on the map
-function createMarker(place) {
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        icon: "images/position.png"
-    });
+// To search based on user input with the search button
+$("#search-button").on("click", function() {
 
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
-}
+    resetDisplay();
 
-// To create markers on the map
-function createNearbyMarker(place, num) {
+    // Added error handling for user input fields
 
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        animation: google.maps.Animation.DROP,
-        icon: {
-            url: iconType(),
-            // url: "images/lodging.png",
-            labelOrigin: new google.maps.Point(18, 8)
-            },
-        label: {
-            text: num.toString(),
-            fontWeight: "bold"
-        }
-    });
+    if ($("#search-location").val() && $("#search-radius").val()) {
 
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent("<div><strong>" + place.name + "</strong><br />" + "Address: " + place.vicinity + "<br />" + "Rating (Out of 5): " + place.rating + "</div>");
-        infowindow.open(map, this);
-    });
-}
+        let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
 
+        infowindow = new google.maps.InfoWindow();
+
+        searchLocation(defaultPlace);
+
+        radiusAttractions();
+
+
+    }
+    else {
+
+        alert("Please fill up both the search location and radius of search before searching");
+
+    }
+
+
+});
+
+// Supporting functions for google map initialisation and form buttons
 
 /*  
 *   To get the user's location
@@ -97,15 +101,13 @@ function geolocate(infoWindow, map, geolocateResult) {
 
 }
 
-
 /*  To handle browsers that don't support geolocation
  *   Return error Message
  */
 function handleLocationError() {
     // Alert message to key in the origin and destinations manually
-    alert("Please enable geolocation for the best experience.")
+    alert("Please enable geolocation for the best experience.");
 }
-
 
 //  To auto-complete entries into the start and search location fields
 function autocomplete() {
@@ -116,36 +118,29 @@ function autocomplete() {
 
 }
 
+// Use geolocation obtain a human-readable address and place it as an input for the search location input
+function geolocateResult() {
 
-// To search based on user input with the search button
-$("#search-button").on("click", function() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
 
-    resetDisplay();
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro")
+            .then(function(response) {
+                let result = response.data.results[0].formatted_address;
+                $("#search-location").val(result)
+            });
 
-    // Added error handling for user input fields
+    });
 
-    if ($("#search-location").val() && $("#search-radius").val()) {
+}
 
-        let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
-
-        infowindow = new google.maps.InfoWindow();
-
-
-        searchLocation(defaultPlace);
-
-        radiusAttractions();
-
-
-    }
-    else {
-
-        alert("Please fill up both the search location and radius of search before searching");
-
-    }
-
-
-});
-
+//To reset the display in the display results table
+function resetDisplay() {
+    $("#display-results").empty()
+}
 
 // To search based on user input
 function searchLocation(defaultPlace) {
@@ -171,6 +166,19 @@ function searchLocation(defaultPlace) {
 
 }
 
+// To create markers on the map
+function createMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        icon: "images/position.png"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
 
 // to locate nearby attractions
 function radiusAttractions() {
@@ -207,27 +215,9 @@ function radiusAttractions() {
 
 }
 
-
-// To create the markers for nearby attractions
-function nearbyMarkers(results, status) {
-
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            var place = results[i];
-
-            // append the details of the results in the display
-            let num = i + 1;
-
-            $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
-
-            createNearbyMarker(place, num);
-        }
-    }
-}
-
-
 // To check the search radio button selected
 function typeCheck() {
+
     if ($("#lodging").is(":checked")) {
         return "images/lodging.png";
     }
@@ -246,43 +236,50 @@ function typeCheck() {
 
 }
 
+// To create the markers for nearby attractions
+function nearbyMarkers(results, status) {
 
-function resetDisplay() {
-    $("#display-results").empty()
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+
+            // append the details of the results in the display
+            let num = i + 1;
+
+            $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
+
+            createNearbyMarker(place, num);
+        }
+    }
 }
 
+// To create markers on the map
+function createNearbyMarker(place, num) {
 
-// function for locate me button
-$("#locate-me-button").on("click", function() {
-
-    geolocateResult()
-
-});
-
-
-// Use geolocation obtain a human-readable address and place it as an input for the search location input
-function geolocateResult() {
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        animation: google.maps.Animation.DROP,
+        icon: {
+            url: iconType(),
+            // url: "images/lodging.png",
+            labelOrigin: new google.maps.Point(18, 8)
+        },
+        label: {
+            text: num.toString(),
+            fontWeight: "bold"
         }
-
-        axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro")
-            .then(function(response) {
-                let result = response.data.results[0].formatted_address
-                $("#search-location").val(result)
-            });
-
     });
 
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent("<div><strong>" + place.name + "</strong><br />" + "Address: " + place.vicinity + "<br />" + "Rating (Out of 5): " + place.rating + "</div>");
+        infowindow.open(map, this);
+    });
 }
 
-
 // function for choosing icon type to display
-function iconType(){
-    
+function iconType() {
+
     if ($("#lodging").is(":checked")) {
         return "images/lodging.png";
     }
@@ -298,5 +295,5 @@ function iconType(){
     else if ($("#shopping-mall").is(":checked")) {
         return "images/shopping-mall.png";
     }
-    
+
 }

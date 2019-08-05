@@ -13,8 +13,9 @@ body {
 }
 
 /*Override bootstrap class padding propertie to align the radio buttons*/
-.form-check{
-    padding-left:40px;
+
+.form-check {
+    padding-left: 40px;
 }
 
 
@@ -24,12 +25,23 @@ body {
     overflow: scroll;
 }
 
-
-@media(max-width: 992px){
-    .display{
+/*At viewport size 992px and above, the button to show/hide details will be hidden*/
+@media(min-width:992px) {
+    .show-details {
         display:none;
+        text-align:center;
     }
 }
+
+/*At viewpoint size 992px and above, the display results will not be shown and toggled by the show/hide details button*/
+@media(max-width: 992px) {
+    .display {
+        height:0px;
+        transition:0.5s;
+    }
+}
+
+/*test end*/
 
 /*Google Map style*/
 
