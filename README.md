@@ -107,6 +107,7 @@ Inspiration:
 https://www.awwwards.com/sites/my-walking-challenge
 FontAwesome
 * Rollover Social Media Icons: https://codepen.io/JunaidKhalid/pen/NxaZJw
+* Pure CSS Radio Button Tiles: https://codepen.io/techanddesign/pen/jGBQev
 * SVG backgrounds
 * SVG image for header banner: https://www.svgbackgrounds.com/?ref=producthunt 
 * Icons8

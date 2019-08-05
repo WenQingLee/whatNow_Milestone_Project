@@ -26,8 +26,8 @@
   <!--Trip Planner Heading with background image-->
   <header>
     <div class="container-fluid my-auto" id="banner">
-      <div class="col web-title">
-        <img src ="images/whatnow-logo.png" alt="Logo of 'whatNow?', sightseeing on the go!">
+      <div class="col text-center">
+        <img src="images/whatnow-logo.png" alt="Logo of 'whatNow?', sightseeing on the go!">
         <hr />
       </div>
     </div>
@@ -38,70 +38,66 @@
 
     <!--Search Section-->
     <section>
-      <div class="container-fluid search-section">
+      <div class="container-fluid">
         <form>
 
           <!--Start and search location inputs-->
-          <div class="form-group row mx-auto">
+          <div class="form-group row mx-auto mt-1">
             <!--Search Location Input-->
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
-            <div class="col-sm-4">
+            <div class="col-sm-4 mt-1">
               <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
             </div>
-            
+
             <!--Locate me function-->
-            <div class="col align-button">
-            <button type="button" class="btn btn-warning" id="locate-me-button">Locate me!</button>
-          </div>
-            
+            <div class="col-2 mt-1">
+              <button type="button" class="btn btn-warning" id="locate-me-button">Locate me!</button>
+            </div>
+
             <!--Radius search input-->
-            <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
-            <div class="col-sm-2">
+            <label for="search-radius" class="col-sm-2 col-form-label mt-1">Radius of search (in meters) : </label>
+            <div class="col-sm-2 mt-1">
               <input type="number" class="form-control" id="search-radius" placeholder="E.g. 400">
             </div>
           </div>
 
           <!--Type of search radio buttons-->
           <div class="form-group row mx-auto">
-            <div class="col-sm-2">
+
+            <div class="col-sm-2 mt-1">
               <p>Type of Search: </p>
             </div>
             <!--Lodgings radio button-->
-            <div class="form-check col-sm-2">
-              <label class="form-check-label" for="lodging">
-                <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging" checked>Lodgings
+            <div class="form-check col-sm-2 mt-1">
+              <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging" checked>
+              <label class="form-check-label" for="lodging">Lodgings
               </label>
             </div>
             <!--Museums radio button-->
-            <div class="form-check col-sm-2">
-              <label class="form-check-label" for="museum">
-                <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum">Museums
-              </label>
+            <div class="form-check col-sm-2 mt-1">
+              <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum">
+              <label class="form-check-label" for="museum">Museums</label>
             </div>
-            
-            <div class="form-check col-sm-2">
-              <label class="form-check-label" for="art-gallery">
-                <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery">Art Galleries
-              </label>
+            <!--Art Galleries radio button-->
+            <div class="form-check col-sm-2 mt-1">
+              <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery">
+              <label class="form-check-label" for="art-gallery">Art Galleries</label>
             </div>
-            
             <!--Restaurants radio button-->
-            <div class="form-check col-sm-2">
-              <label class="form-check-label" for="restaurant">
-                <input class="form-check-input" type="radio" value="restaurant" name="search-opt" id="restaurant">Restaurants
-              </label>
+            <div class="form-check col-sm-2 mt-1">
+              <input class="form-check-input" type="radio" value="restaurant" name="search-opt" id="restaurant">
+              <label class="form-check-label" for="restaurant">Restaurants</label>
             </div>
             <!--Shopping malls radio button-->
-            <div class="form-check col-sm-2">
-              <label class="form-check-label" for="shopping-mall">
-                <input class="form-check-input" type="radio" value="shopping_mall" name="search-opt" id="shopping-mall">Shopping Malls
-              </label>
+            <div class="form-check col-sm-2 mt-1">
+              <input class="form-check-input" type="radio" value="shopping_mall" name="search-opt" id="shopping-mall">
+              <label class="form-check-label" for="shopping-mall">Shopping Malls</label>
             </div>
-            
+
           </div>
 
           <!--Search button-->
-          <div class="col align-button">
+          <div class="col text-center">
             <button type="button" class="btn btn-warning" id="search-button">Search!</button>
             <hr />
           </div>
@@ -113,15 +109,15 @@
     <!--Display Section-->
     <section>
       <div class="row">
-        
+
         <!--Google Map-->
         <div class="col-lg-6" id="map">&nbsp</div>
 
         <!--Search Results-->
         <div class="col-lg-6 display">
-          
+
           <table class="table">
-            
+
             <thead>
               <tr>
                 <th scope="col">S/N</th>
@@ -130,17 +126,17 @@
                 <th scope="col">Rating <br /> (Out of 5)</th>
               </tr>
             </thead>
-            
+
             <!--Display to append the results from the search-->
             <tbody id="display-results">
 
             </tbody>
-            
+
           </table>
-          
+
         </div>
 
-        
+
 
       </div>
     </section>
@@ -182,7 +178,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-  
+
   <!--Load scripts-->
   <script type="text/javascript" src="scripts/script.js"></script>
 

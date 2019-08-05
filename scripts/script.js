@@ -52,7 +52,6 @@ function createNearbyMarker(place, num) {
             },
         label: {
             text: num.toString(),
-            // fontSize: "24px",
             fontWeight: "bold"
         }
     });
@@ -280,8 +279,6 @@ function geolocateResult() {
 
 }
 
-
-// test
 
 // function for choosing icon type to display
 function iconType(){

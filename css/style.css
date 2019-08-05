@@ -12,29 +12,23 @@ body {
     background-size: cover;
 }
 
-.web-title {
-    text-align: center;
-    /*padding:50px;*/
-}
-
-/*padding for search section*/
-
-.search-section {
-    padding: 10px;
-}
-
-/*alignment for locate me and search buttons*/
-
-.align-button {
-    text-align: center;
+/*Override bootstrap class padding propertie to align the radio buttons*/
+.form-check{
+    padding-left:40px;
 }
 
 
 /*Results Display Style*/
-
 .display {
     height: 600px;
     overflow: scroll;
+}
+
+
+@media(max-width: 992px){
+    .display{
+        display:none;
+    }
 }
 
 /*Google Map style*/
