@@ -40,7 +40,7 @@ function createMarker(place) {
 
 // To create markers on the map
 function createNearbyMarker(place, num) {
-    
+
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
@@ -49,7 +49,7 @@ function createNearbyMarker(place, num) {
     });
 
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent("<div><strong>" + place.name + "</strong><br />" + "Address: " + place.vicinity + "<br />" + "Rating: " + place.rating + "</div>");
+        infowindow.setContent("<div><strong>" + place.name + "</strong><br />" + "Address: " + place.vicinity + "<br />" + "Rating (Out of 5): " + place.rating + "</div>");
         infowindow.open(map, this);
     });
 }
@@ -65,7 +65,7 @@ function createNearbyMarker(place, num) {
 *   geolocate: must return
 @   return google map location
 */
-function geolocate(infoWindow, map) {
+function geolocate(infoWindow, map, geolocateResult) {
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -111,28 +111,28 @@ function autocomplete() {
 
 // To search based on user input with the search button
 $("#search-button").on("click", function() {
-    
+
     resetDisplay();
-    
+
     // Added error handling for user input fields
-    
-    if( $("#search-location").val() && $("#search-radius").val() ){
-        
-    let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
 
-    infowindow = new google.maps.InfoWindow();
+    if ($("#search-location").val() && $("#search-radius").val()) {
+
+        let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
+
+        infowindow = new google.maps.InfoWindow();
 
 
-    searchLocation(defaultPlace);
+        searchLocation(defaultPlace);
 
-    radiusAttractions();
-        
-        
-    } else {
-        
-        
-        alert("Please fill up both the search location and radius of search before clicking the search button")
-        
+        radiusAttractions();
+
+
+    }
+    else {
+
+        alert("Please fill up both the search location and radius of search before searching");
+
     }
 
 
@@ -206,7 +206,7 @@ function nearbyMarkers(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             var place = results[i];
-            
+
             // append the details of the results in the display
             let num = i + 1;
 
@@ -239,24 +239,36 @@ function typeCheck() {
 }
 
 
-// $("#reset-button").on("click", function() {
-
-//     resetDisplay();
-//     clearMarkers();
-
-// });
-
-
 function resetDisplay() {
     $("#display-results").empty()
 }
 
 
-// function clearMarkers() {
-//  for (var i = 0; i < markers.length; i++) {
-//   if (markers[i]) {
-//   markers[i].setMap(null);
-//   }
-//  }
-//  markers = [];
-// }
+// test
+
+// function for locate me button
+$("#locate-me-button").on("click", function() {
+
+    geolocateResult()
+
+});
+
+
+// Use geolocation obtain a human-readable address and place it as an input for the search location input
+function geolocateResult() {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro")
+            .then(function(response) {
+                let result = response.data.results[0].formatted_address
+                $("#search-location").val(result)
+            });
+
+    });
+
+}

@@ -23,9 +23,9 @@ body {
     padding: 10px;
 }
 
-/*alignment for search button*/
+/*alignment for locate me and search buttons*/
 
-.search-button {
+.align-button {
     text-align: center;
 }
 

@@ -33,7 +33,7 @@
     </div>
   </header>
 
-  <!--Main containing search section, display section, googlemap and email section-->
+  <!--Main containing search section, display section and googlemap-->
   <main>
 
     <!--Search Section-->
@@ -46,12 +46,18 @@
             <!--Search Location Input-->
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore" required>
+              <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
             </div>
+            
+            <!--Locate me function-->
+            <div class="col align-button">
+            <button type="button" class="btn btn-warning" id="locate-me-button">Locate me!</button>
+          </div>
+            
             <!--Radius search input-->
             <label for="search-radius" class="col-sm-2 col-form-label">Radius of search (in meters) : </label>
             <div class="col-sm-2">
-              <input type="number" class="form-control" id="search-radius" placeholder="E.g. 400" required>
+              <input type="number" class="form-control" id="search-radius" placeholder="E.g. 400">
             </div>
           </div>
 
@@ -95,14 +101,10 @@
           </div>
 
           <!--Search button-->
-          <div class="col search-button">
+          <div class="col align-button">
             <button type="button" class="btn btn-warning" id="search-button">Search!</button>
+            <hr />
           </div>
-          
-          <!--Reset button-->
-          <!--<div class="col search-button">-->
-          <!--  <button type="button" class="btn btn-warning" id="reset-button">Reset!</button>-->
-          <!--</div>-->
 
         </form>
       </div>
@@ -125,17 +127,13 @@
                 <th scope="col">S/N</th>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
-                <th scope="col">Rating</th>
-                <!--<th scope="col">Opening Hours</th>-->
+                <th scope="col">Rating <br /> (Out of 5)</th>
               </tr>
             </thead>
             
+            <!--Display to append the results from the search-->
             <tbody id="display-results">
-              <!--<td id="name"></td>-->
-              <!--<td id="type"></td>-->
-              <!--<td id="rating"></td>-->
-              <!--<td id="opening-hours"></td>-->
-              
+
             </tbody>
             
           </table>
