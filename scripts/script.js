@@ -45,7 +45,16 @@ function createNearbyMarker(place, num) {
         map: map,
         position: place.geometry.location,
         animation: google.maps.Animation.DROP,
-        label: num.toString()
+        icon: {
+            url: iconType(),
+            // url: "images/lodging.png",
+            labelOrigin: new google.maps.Point(18, 8)
+            },
+        label: {
+            text: num.toString(),
+            // fontSize: "24px",
+            fontWeight: "bold"
+        }
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -221,7 +230,7 @@ function nearbyMarkers(results, status) {
 // To check the search radio button selected
 function typeCheck() {
     if ($("#lodging").is(":checked")) {
-        return $("#lodging").val();
+        return "images/lodging.png";
     }
     else if ($("#museum").is(":checked")) {
         return $("#museum").val();
@@ -243,8 +252,6 @@ function resetDisplay() {
     $("#display-results").empty()
 }
 
-
-// test
 
 // function for locate me button
 $("#locate-me-button").on("click", function() {
@@ -271,4 +278,28 @@ function geolocateResult() {
 
     });
 
+}
+
+
+// test
+
+// function for choosing icon type to display
+function iconType(){
+    
+    if ($("#lodging").is(":checked")) {
+        return "images/lodging.png";
+    }
+    else if ($("#museum").is(":checked")) {
+        return "images/museum.png";
+    }
+    else if ($("#art-gallery").is(":checked")) {
+        return "images/art-gallery.png";
+    }
+    else if ($("#restaurant").is(":checked")) {
+        return "images/restaurant.png";
+    }
+    else if ($("#shopping-mall").is(":checked")) {
+        return "images/shopping-mall.png";
+    }
+    
 }
