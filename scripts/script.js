@@ -1,4 +1,4 @@
-// To toggle the show/hide details button to display the search details
+// To toggle the show/hide details button to display/hide the search details
 $("#show-details").on("click", function() {
     if ($(".display")[0].style.height === "0px") {
         $(".display")[0].style.height = "600px";
@@ -21,10 +21,10 @@ function initMap() {
 
     infoWindow = new google.maps.InfoWindow;
 
-    // To enable geolocation
-    geolocate(infoWindow, map);
+    // To find user's location
+    geolocate(infoWindow, map, geolocateResult);
 
-    // To enable auto-complete
+    // To enable auto-complete in the search location input field
     autocomplete();
 
     // Used for Jasmine Testing
@@ -43,17 +43,13 @@ $("#search-button").on("click", function() {
     resetDisplay();
 
     // Added error handling for user input fields
-
     if ($("#search-location").val() && $("#search-radius").val()) {
-
-        let defaultPlace = new google.maps.LatLng(1.290270, 103.851959);
 
         infowindow = new google.maps.InfoWindow();
 
-        searchLocation(defaultPlace);
+        searchLocation();
 
         radiusAttractions();
-
 
     }
     else {
@@ -79,8 +75,10 @@ $("#search-button").on("click", function() {
 */
 function geolocate(infoWindow, map, geolocateResult) {
 
+    // If geolocation is enabled/supported, to show user's location on the map
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
+            
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -89,13 +87,15 @@ function geolocate(infoWindow, map, geolocateResult) {
             infoWindow.setPosition(pos);
             infoWindow.setContent('You are here.');
             infoWindow.open(map);
+            
             map.setCenter(pos);
+            
         }, function() {
             handleLocationError(true, infoWindow);
         });
     }
+    // To show error message if geolocation is not enabled/supported
     else {
-        // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow);
     }
 
@@ -106,7 +106,7 @@ function geolocate(infoWindow, map, geolocateResult) {
  */
 function handleLocationError() {
     // Alert message to key in the origin and destinations manually
-    alert("Please enable geolocation for the best experience.");
+    alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work.");
 }
 
 //  To auto-complete entries into the start and search location fields
@@ -118,7 +118,7 @@ function autocomplete() {
 
 }
 
-// Use geolocation obtain a human-readable address and place it as an input for the search location input
+// Use geolocation to obtain a human-readable address and place it as an input for the search location input
 function geolocateResult() {
 
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -142,8 +142,8 @@ function resetDisplay() {
     $("#display-results").empty()
 }
 
-// To search based on user input
-function searchLocation(defaultPlace) {
+// To find the location based on user input and place a marker
+function searchLocation() {
     map = new google.maps.Map(
         document.getElementById('map'), { zoom: 15 });
 
@@ -166,12 +166,12 @@ function searchLocation(defaultPlace) {
 
 }
 
-// To create markers on the map
+// To create the search location as a marker on the map
 function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: "images/position.png"
+        icon: "images/icons/position.png"
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -180,7 +180,7 @@ function createMarker(place) {
     });
 }
 
-// to locate nearby attractions
+// To locate nearby attractions based on the user input location
 function radiusAttractions() {
 
     geocoder = new google.maps.Geocoder();
@@ -219,7 +219,7 @@ function radiusAttractions() {
 function typeCheck() {
 
     if ($("#lodging").is(":checked")) {
-        return "images/lodging.png";
+        return $("lodging").val();
     }
     else if ($("#museum").is(":checked")) {
         return $("#museum").val();
@@ -236,7 +236,7 @@ function typeCheck() {
 
 }
 
-// To create the markers for nearby attractions
+// To create the markers and append the details of the results in the display for nearby attractions
 function nearbyMarkers(results, status) {
 
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -262,7 +262,6 @@ function createNearbyMarker(place, num) {
         animation: google.maps.Animation.DROP,
         icon: {
             url: iconType(),
-            // url: "images/lodging.png",
             labelOrigin: new google.maps.Point(18, 8)
         },
         label: {
@@ -281,19 +280,19 @@ function createNearbyMarker(place, num) {
 function iconType() {
 
     if ($("#lodging").is(":checked")) {
-        return "images/lodging.png";
+        return "images/icons/lodging.png";
     }
     else if ($("#museum").is(":checked")) {
-        return "images/museum.png";
+        return "images/icons/museum.png";
     }
     else if ($("#art-gallery").is(":checked")) {
-        return "images/art-gallery.png";
+        return "images/icons/art-gallery.png";
     }
     else if ($("#restaurant").is(":checked")) {
-        return "images/restaurant.png";
+        return "images/icons/restaurant.png";
     }
     else if ($("#shopping-mall").is(":checked")) {
-        return "images/shopping-mall.png";
+        return "images/icons/shopping-mall.png";
     }
 
 }

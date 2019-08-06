@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,13 +13,14 @@
   <!--CSS stylesheet-->
   <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <!--FontAwesome-->
-  <script src="https://kit.fontawesome.com/af4d281973.js"></script>
+  <!--Roboto Font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
   <!--Axios CDN-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <title>whatNow? Navigation on the go!</title>
+
 </head>
 
 <body>
@@ -27,7 +29,7 @@
   <header>
     <div class="container-fluid my-auto" id="banner">
       <div class="col text-center">
-        <img src="images/whatnow-logo.png" alt="Logo of 'whatNow?', sightseeing on the go!">
+        <img src="images/logo/whatnow-logo.png" alt="Logo of 'whatNow?', sightseeing on the go!">
         <hr />
       </div>
     </div>
@@ -41,17 +43,18 @@
       <div class="container-fluid">
         <form>
 
-          <!--Start and search location inputs-->
+          <!--Search location inputs and locate me button-->
           <div class="form-group row mx-auto mt-1">
-            <!--Search Location Input-->
+
+            <!--Search location input-->
             <label for="search-location" class="col-sm-2 col-form-label">Search Location: </label>
             <div class="col-sm-4 mt-1">
               <input type="text" class="form-control" id="search-location" placeholder="E.g. Singapore">
             </div>
 
-            <!--Locate me function-->
+            <!--Locate me button-->
             <div class="col-2 mt-1">
-              <button type="button" class="btn btn-warning" id="locate-me-button">Locate me!</button>
+              <button type="button" class="btn btn-warning" id="locate-me-button">Locate me</button>
             </div>
 
             <!--Radius search input-->
@@ -67,27 +70,31 @@
             <div class="col-sm-2 mt-1">
               <p>Type of Search: </p>
             </div>
+
             <!--Lodgings radio button-->
             <div class="form-check col-sm-2 mt-1">
               <input class="form-check-input" type="radio" value="lodging" name="search-opt" id="lodging" checked>
-              <label class="form-check-label" for="lodging">Lodgings
-              </label>
+              <label class="form-check-label" for="lodging">Lodgings</label>
             </div>
+
             <!--Museums radio button-->
             <div class="form-check col-sm-2 mt-1">
               <input class="form-check-input" type="radio" value="museum" name="search-opt" id="museum">
               <label class="form-check-label" for="museum">Museums</label>
             </div>
+
             <!--Art Galleries radio button-->
             <div class="form-check col-sm-2 mt-1">
               <input class="form-check-input" type="radio" value="art_gallery" name="search-opt" id="art-gallery">
               <label class="form-check-label" for="art-gallery">Art Galleries</label>
             </div>
+
             <!--Restaurants radio button-->
             <div class="form-check col-sm-2 mt-1">
               <input class="form-check-input" type="radio" value="restaurant" name="search-opt" id="restaurant">
               <label class="form-check-label" for="restaurant">Restaurants</label>
             </div>
+
             <!--Shopping malls radio button-->
             <div class="form-check col-sm-2 mt-1">
               <input class="form-check-input" type="radio" value="shopping_mall" name="search-opt" id="shopping-mall">
@@ -98,7 +105,7 @@
 
           <!--Search button-->
           <div class="col text-center">
-            <button type="button" class="btn btn-warning" id="search-button">Search!</button>
+            <button type="button" class="btn btn-warning" id="search-button">Search</button>
             <hr />
           </div>
 
@@ -113,41 +120,38 @@
         <!--Google Map-->
         <div class="col-lg-6" id="map">&nbsp</div>
 
+          <!--Show/hide details button-->
+          <div class="col text-center show-details mt-1">
+            <button type="button" class="btn btn-warning" id="show-details">Show/Hide details</button>
+          </div>
 
-      <div class="col text-center show-details mt-1">
-        <button type="button" class="btn btn-warning" id="show-details">Show/Hide details</button>
-      </div>
+            <!--Search Results-->
+            <div class="col-lg-6 display">
 
-        <!--Search Results-->
-        <div class="col-lg-6 display">
+              <!--Display of results table-->
+              <table class="table">
+
+                <!--Results headers-->
+                <thead>
+                  <tr>
+                    <th scope="col">S/N</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Rating <br /> (of 5)</th>
+                  </tr>
+                </thead>
+
+                <!--Display to append the results from the search-->
+                <tbody id="display-results">
+
+                </tbody>
+
+              </table>
+
+            </div>
           
-          
-
-          <table class="table">
-
-            <thead>
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Rating <br /> (of 5)</th>
-              </tr>
-            </thead>
-
-            <!--Display to append the results from the search-->
-            <tbody id="display-results">
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-
-
       </div>
     </section>
-
 
   </main>
 
@@ -155,36 +159,42 @@
   <!--Footer with social media icons-->
   <footer>
     <div class="container-fluid foot mt-3">
+
       <div class="row">
         <!--Social media icons-->
         <div class="col my-auto">
 
+          <!--Facebook icon-->
           <div class="sm-icon" id="social-media">
+
             <a class="facebook1" href="https://www.facebook.com" target="_blank" title="Facebook" rel="nofollow">
               <div class="facebook1"></div>
             </a>
+
+            <!--Twitter icon-->
             <a class="twitter1" href="https://twitter.com" target="_blank" title="Twitter" rel="nofollow">
               <div class="twitter1"></div>
             </a>
+
+            <!--LinkedIn icon-->
             <a class="linkdin1" href="https://www.linkedin.com/" target="_blank" title="Linkedin" rel="nofollow">
               <div class="linkdin1"></div>
             </a>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
   </footer>
-
-
-
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
 
   <!--Load scripts-->
   <script type="text/javascript" src="scripts/script.js"></script>
@@ -193,7 +203,6 @@
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro&libraries=places&callback=initMap">
   </script>
-
 
 </body>
 

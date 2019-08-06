@@ -26,7 +26,7 @@ describe("googleMap", function() {
    describe("handleLocationError", function(){
       // Test if it returns the correct alert message
       it("handleLocationError should have an alert", function(){
-         expect(handleLocationError()).toBe(alert("Please enable geolocation for the best experience."))
+         expect(handleLocationError()).toBe(alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work."))
       });
    });
    
@@ -36,9 +36,9 @@ describe("googleMap", function() {
       // Test that autocomplete is not null or undefined
       it("autocomplete should return a correct value", function(){
          expect(autocomplete()).not.toEqual(null)
-      })
+      });
       
-   })
+   });
 
 
 
