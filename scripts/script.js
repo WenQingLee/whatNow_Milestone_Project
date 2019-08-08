@@ -1,6 +1,6 @@
 // Higher order functions for googlemap initialisation and form buttons
 
-// To initialise Google Map
+// To initialise Google Map, show the user's location and let the search location field be auto-completed
 function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -11,7 +11,7 @@ function initMap() {
 
     infoWindow = new google.maps.InfoWindow;
 
-    // To find user's location
+    // To find user's location and place an infowindow
     geolocate(infoWindow, map, geolocateResult);
 
     // To enable auto-complete in the search location input field
@@ -22,30 +22,33 @@ function initMap() {
 
 }
 
-// For the locate me button that will place the address of the user's current location into the search location input
+// For the locate me button that will place the address of the user's current location into the search location input field
 $("#locate-me-button").on("click", function() {
+    
     geolocateResult();
+    
 });
 
-// To search based on user input with the search button
+// To reset the results display and search the nearby attractions on user input with the search button
 $("#search-button").on("click", function() {
 
     resetDisplay();
 
-    // Added error handling for user input fields
+    // Sucesss and Error handling for user input fields
     if ($("#search-location").val() && $("#search-radius").val() && $("#search-radius").val() > 0 && $("#search-radius").val() <= 50000) {
 
         infowindow = new google.maps.InfoWindow();
-
+        
+        // To place the user's location on the map
         searchLocation();
 
+        // To find the nearby attractions based on user's inputs
         radiusAttractions();
 
     }
     else {
 
         alert("Please fill up both the search location and radius of search (between 0 to 50,000) before searching");
-
     }
 
 
@@ -63,16 +66,7 @@ $("#show-details").on("click", function() {
 
 // Supporting functions for google map initialisation and form buttons
 
-/*  
-*   To get the user's location
-*   @param infowindow , map
-*   Precondition: 
-*   infowindow: must be defined
-*   map: must be defined
-*   Post condition:
-*   geolocate: must return
-@   return google map location
-*/
+// To find the user's location and place an infowindow on the map
 function geolocate(infoWindow, map, geolocateResult) {
 
     // If geolocation is enabled/supported, to show user's location on the map
@@ -94,16 +88,13 @@ function geolocate(infoWindow, map, geolocateResult) {
             handleLocationError(true);
         });
     }
-    // To show error message if geolocation is not enabled/supported
     else {
         handleLocationError(false);
     }
 
 }
 
-/*  To return error alerts if geolocation is not enabled or if the browser don't support geolocation
- *   Return alert message
- */
+//  To return error alerts if geolocation is not enabled or if the browser don't support geolocation
 function handleLocationError(browserHasGeoLocation) {
     // If, else ternary function to show alert message accordingly
     browserHasGeoLocation?
@@ -114,7 +105,7 @@ function handleLocationError(browserHasGeoLocation) {
     
 }
 
-//  To auto-complete entries into the start and search location fields
+//  To auto-complete entries into search location input field
 function autocomplete() {
 
     //  Autocomplete for search location
@@ -144,7 +135,9 @@ function geolocateResult() {
 
 //To reset the display in the display results table
 function resetDisplay() {
+    
     $("#display-results").empty()
+    
 }
 
 // To find the location based on user input and place a marker
@@ -171,7 +164,7 @@ function searchLocation() {
 
 }
 
-// To create the search location as a marker on the map
+// To create the search location and show the user position as a marker on the map
 function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
@@ -220,7 +213,7 @@ function radiusAttractions() {
 
 }
 
-// To check the search radio button selected
+// To check the type of search radio button selected
 function typeCheck() {
 
     if ($("#lodging").is(":checked")) {
@@ -258,7 +251,7 @@ function nearbyMarkers(results, status) {
     }
 }
 
-// To create markers on the map
+// To create markers and infowindows on the map for the nearby attractions
 function createNearbyMarker(place, num) {
 
     var marker = new google.maps.Marker({
@@ -281,7 +274,7 @@ function createNearbyMarker(place, num) {
     });
 }
 
-// function for choosing icon type to display
+// To select the icon type to display as a marker based on type of search radio button selected
 function iconType() {
 
     if ($("#lodging").is(":checked")) {

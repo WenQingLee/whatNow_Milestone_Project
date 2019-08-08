@@ -27,14 +27,6 @@ body {
     overflow: scroll;
 }
 
-/*At viewport size 992px and above, the button to show/hide details will be hidden*/
-
-@media(min-width:992px) {
-    .show-details {
-        display: none;
-        text-align: center;
-    }
-}
 
 /*At viewpoint size 992px and above, the display results will not be shown and toggled by the show/hide details button*/
 
@@ -42,6 +34,15 @@ body {
     .display {
         height: 0px;
         transition: 0.5s;
+    }
+}
+
+/*At viewport size 992px and above, the button to show/hide details will be hidden*/
+
+@media(min-width:992px) {
+    .show-details {
+        display: none;
+        text-align: center;
     }
 }
 
