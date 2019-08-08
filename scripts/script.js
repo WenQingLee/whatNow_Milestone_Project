@@ -24,9 +24,9 @@ function initMap() {
 
 // For the locate me button that will place the address of the user's current location into the search location input field
 $("#locate-me-button").on("click", function() {
-    
+
     geolocateResult();
-    
+
 });
 
 // To reset the results display and search the nearby attractions on user input with the search button
@@ -38,7 +38,7 @@ $("#search-button").on("click", function() {
     if ($("#search-location").val() && $("#search-radius").val() && $("#search-radius").val() > 0 && $("#search-radius").val() <= 50000) {
 
         infowindow = new google.maps.InfoWindow();
-        
+
         // To place the user's location on the map
         searchLocation();
 
@@ -97,12 +97,12 @@ function geolocate(infoWindow, map, geolocateResult) {
 //  To return error alerts if geolocation is not enabled or if the browser don't support geolocation
 function handleLocationError(browserHasGeoLocation) {
     // If, else ternary function to show alert message accordingly
-    browserHasGeoLocation?
-    alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work."):
-    alert("This browser doesn't support geolocation and the 'Locate Me' button will not work");
+    browserHasGeoLocation ?
+        alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work.") :
+        alert("This browser doesn't support geolocation and the 'Locate Me' button will not work");
     // To remove the locate-me button if geolocation is not enabled or supported
     $("#locate-me-button")[0].remove();
-    
+
 }
 
 //  To auto-complete entries into search location input field
@@ -135,9 +135,9 @@ function geolocateResult() {
 
 //To reset the display in the display results table
 function resetDisplay() {
-    
+
     $("#display-results").empty()
-    
+
 }
 
 // To find the location based on user input and place a marker
