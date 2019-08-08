@@ -88,7 +88,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 
 ## Testing
 
-Testing was done across multiple viewports sizes to ensure responsiveness. W3C Markup Validation Service and HTMLHint were used to check the HTML code. W3C CSS Validation Service and CSSLint were also used to check the CSS code. 
+Testing was done across multiple viewports sizes to ensure responsiveness. W3C Markup Validation Service and HTMLHint were used to check the HTML code. W3C CSS Validation Service and CSSLint were also used to check the CSS code. JSHint was used to check the Javascript code.
 
 Automated testing (Jasmine) is used for the initMap function and handleLocationError function. The test files are located in the tests folder. It can be run by previewing the test.html file.
 

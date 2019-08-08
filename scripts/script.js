@@ -30,9 +30,9 @@ $("#locate-me-button").on("click", function() {
 });
 
 // To reset the results display and search the nearby attractions on user input with the search button
-$("#search-button").on("click", function() {
+$("#search-button").on("click", async function() {
 
-    resetDisplay();
+    await resetDisplay();
 
     // Sucesss and Error handling for user input fields
     if ($("#search-location").val() && $("#search-radius").val() && $("#search-radius").val() > 0 && $("#search-radius").val() <= 50000) {
@@ -126,7 +126,7 @@ function geolocateResult() {
         axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=AIzaSyDoEv5jmhi5Iw1bPJTBGAEAWUsS-BQnBro")
             .then(function(response) {
                 let result = response.data.results[0].formatted_address;
-                $("#search-location").val(result)
+                $("#search-location").val(result);
             });
 
     });
@@ -136,7 +136,7 @@ function geolocateResult() {
 //To reset the display in the display results table
 function resetDisplay() {
 
-    $("#display-results").empty()
+    $("#display-results").empty();
 
 }
 
@@ -183,7 +183,7 @@ function radiusAttractions() {
 
     geocoder = new google.maps.Geocoder();
 
-    let searchAddress = $("#search-location").val()
+    let searchAddress = $("#search-location").val();
 
     geocoder.geocode({ "address": searchAddress }, function(results, status) {
         if (status == "OK") {
@@ -244,7 +244,7 @@ function nearbyMarkers(results, status) {
             // append the details of the results in the display
             let num = i + 1;
 
-            $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>")
+            $("#display-results").append("<tr><td>" + num + "</td>" + "<td>" + place.name + "</td>" + "<td>" + place.vicinity + "</td>" + "<td>" + place.rating + "</td></tr>");
 
             createNearbyMarker(place, num);
         }
