@@ -1,13 +1,3 @@
-// To toggle the show/hide details button to display/hide the search details
-$("#show-details").on("click", function() {
-    if ($(".display")[0].style.height === "0px") {
-        $(".display")[0].style.height = "600px";
-    }
-    else {
-        $(".display")[0].style.height = "0px";
-    }
-});
-
 // Higher order functions for googlemap initialisation and form buttons
 
 // To initialise Google Map
@@ -32,7 +22,7 @@ function initMap() {
 
 }
 
-// function for locate me button
+// For the locate me button that will place the address of the user's current location into the search location input
 $("#locate-me-button").on("click", function() {
     geolocateResult();
 });
@@ -43,7 +33,7 @@ $("#search-button").on("click", function() {
     resetDisplay();
 
     // Added error handling for user input fields
-    if ($("#search-location").val() && $("#search-radius").val()) {
+    if ($("#search-location").val() && $("#search-radius").val() && $("#search-radius").val() > 0 && $("#search-radius").val() <= 50000) {
 
         infowindow = new google.maps.InfoWindow();
 
@@ -54,12 +44,23 @@ $("#search-button").on("click", function() {
     }
     else {
 
-        alert("Please fill up both the search location and radius of search before searching");
+        alert("Please fill up both the search location and radius of search (between 0 to 50,000) before searching");
 
     }
 
 
 });
+
+// To toggle the show/hide details button to display/hide the search details
+$("#show-details").on("click", function() {
+    if ($(".display")[0].style.height === "0px") {
+        $(".display")[0].style.height = "600px";
+    }
+    else {
+        $(".display")[0].style.height = "0px";
+    }
+});
+
 
 // Supporting functions for google map initialisation and form buttons
 
@@ -78,7 +79,7 @@ function geolocate(infoWindow, map, geolocateResult) {
     // If geolocation is enabled/supported, to show user's location on the map
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            
+
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -87,26 +88,31 @@ function geolocate(infoWindow, map, geolocateResult) {
             infoWindow.setPosition(pos);
             infoWindow.setContent('You are here.');
             infoWindow.open(map);
-            
+
             map.setCenter(pos);
-            
+
         }, function() {
-            handleLocationError(true, infoWindow);
+            handleLocationError(true);
         });
     }
     // To show error message if geolocation is not enabled/supported
     else {
-        handleLocationError(false, infoWindow);
+        handleLocationError(false);
     }
 
 }
 
-/*  To handle browsers that don't support geolocation
- *   Return error Message
+/*  To return error alerts if geolocation is not enabled or if the browser don't support geolocation
+ *   Return alert message
  */
-function handleLocationError() {
-    // Alert message to key in the origin and destinations manually
-    alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work.");
+function handleLocationError(browserHasGeoLocation) {
+    // If, else ternary function to show alert message accordingly
+    browserHasGeoLocation?
+    alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work."):
+    alert("This browser doesn't support geolocation and the 'Locate Me' button will not work");
+    // To remove the locate-me button if geolocation is not enabled or supported
+    $("#locate-me-button")[0].remove();
+    
 }
 
 //  To auto-complete entries into the start and search location fields

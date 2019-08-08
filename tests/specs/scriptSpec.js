@@ -25,9 +25,12 @@ describe("googleMap", function() {
    // Testing the handleLocationError
    describe("handleLocationError", function(){
       // Test if it returns the correct alert message
-      it("handleLocationError should have an alert", function(){
-         expect(handleLocationError()).toBe(alert("Please enable geolocation for the best experience and for the 'Locate Me' button to work."))
+      it ("should return an error if geolocation is not enabled", function(){
+         spyOn(window, "alert");
+         handleLocationError(true)
+         expect(window.alert).toHaveBeenCalledWith("Please enable geolocation for the best experience and for the 'Locate Me' button to work.")
       });
+      
    });
    
    

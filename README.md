@@ -107,8 +107,8 @@ Inspiration:
 https://www.awwwards.com/sites/my-walking-challenge
 FontAwesome
 * Rollover Social Media Icons: https://codepen.io/JunaidKhalid/pen/NxaZJw
-* Pure CSS Radio Button Tiles: https://codepen.io/techanddesign/pen/jGBQev
 * SVG backgrounds
 * SVG image for header banner: https://www.svgbackgrounds.com/?ref=producthunt 
 * Icons8
 * icon for google map: https://icons8.com/icons/set/person
+* Controlling geolocation for manual testing: https://medium.com/@williamkoehrsen/controlling-your-location-in-google-chrome-6c0b216d1ba1
