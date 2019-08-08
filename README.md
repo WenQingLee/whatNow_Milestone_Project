@@ -31,34 +31,68 @@ To improve interactivity, we have considered using event listeners or buttons bu
 ## Features
 
 ### Existing Features
+
+#### Search Component
 1. Geolocation:
-The user's location is show on the map when it initialises before a search is conducted. (Requires permission to use geolocation)
-2. Search location input:
-Lets the user specify the search location
-2. Radius of Search input:
-Lets the user decide the radius of their search
-3. 
+The user's location is shown on the map when it initialises before a search is conducted. (Requires browser to support geolocation and permission to use geolocation)
+2. Search location input field:
+Allows users specify the search location by filling up the input field.
+3. "Locate me" button (Only if geo-location is enabled):
+Clicking the button obtains the user's location and automatically fill the "Search Location" input field. (Requires browser to support geolocation and permission to use geolocation)
+4. Radius of Search input field:
+Let the users decide on the radius of their search between 0 to 50,000 meters based on their input
+5. Type of searches with radio buttons (i.e. Lodgings, Museums, Art Galleries, Restaurants and Shopping Malls)
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+#### Display Component
+1. A google maps display with customised markers, infowindows and labels
+2. Info Windows include information on name, address and rating for easy reading without the results summary.
+3. Labels are provided for reference between the googleMap markers and results summary table
+2. Display of results summary in a table for easy reference (Collapsible in smaller viewports)
+3. Results are ranked accordingly to prominence and have different markers for each respective search type
 
-### Existing Features
-* Feature 1 - allows users X to achieve Y, by having them fill out Z
-* ...
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+#### Share Component
+1. Common social media platforms such as facebook and twitter are included in the footer for users to share their locations and/or experiences
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
-Features Left to Implement
-* Another feature idea
+### Other features
+
+1. The locate button will not be shown if geolocation is not enabled or supported by the browser
+2. The "Search Location" and "Radius of Search" are both required to be filled otherwise an alert message will pop up when the user clicks the "Submit" button.
+3. The input for "Radius of Search" has to be between 0 to 50,000 or an alert will pop up when the user clicks the "Submit" button.
+
+
+#### Features Left to Implement
+1. Use the directions API to plot a route from current location to the search location 
+
+    This feature was dropped as it requires geolocation to work and raises the query should it be directions to the search location or should it be the search location to the area search results.
+
+2. Implement multiple searches and provide suggestions based on ratings
+
+    This feature was dropped as multiple searches and provding suggestions based on ratings may be too much information for a user to use on the fly. 
+    
+3. Allow emailing of multiple searches to other parties using EmailJS
+
+    This feature was dropped as it is archaic for such informal use and therefore likely to see limited use.
+
 
 ## Technologies Used
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 
-* JQuery:
-The project uses JQuery to simplify DOM manipulation.
+1. HTML
+2. CSS
+3. Bootstrap (https://getbootstrap.com/) : This project uses Bootstrap to simplify the development of the webpage
+4. JavaScript
+5. JQuery (https://jquery.com/) : The project uses JQuery to simplify DOM manipulation.
+6. GoogleMap API (https://developers.google.com/maps/documentation/javascript/tutorial, Libraries: Places, Geocoding): This project uses GoogleMap API to display a map and search results.
 
 ## Testing
+
+
+Testing was done across multiple viewports to ensure responsiveness W3C Markup Validation Service and HTMLHint were used to check the HTML code. W3C CSS Validation Service and CSSLint were also used to check the CSS code. Manual testing was employed to check the functionality of the website.
+
 * As majority of the functions used do not return a value, the value of the inputs are declared in test.html to simulate user inputs
+
+
 
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
@@ -79,33 +113,23 @@ You should also mention in this section any interesting bugs or problems you dis
 If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
 ## Deployment
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
+This site is hosted using GitHub pages, deployed directly from the master branch. The deployed site will update automatically upon new commits to the master branch. In order for the site to deploy correctly on GitHub pages, the landing page must be named index.html.
 
-Different values for environment variables (Heroku Config Vars)?
-Different configuration files?
-Separate git branch?
-In addition, if it is not obvious, you should also describe how to run your code locally.
+To run locally, you can clone this repository directly into the editor of your choice by pasting git clone https://github.com/WenQingLee/whatNow_Milestone_Project.git into your terminal. To cut ties with this GitHub repository, type git remote rm origin into the terminal.
+
 
 ## Credits
 
-### Content
-The text for section Y was copied from the Wikipedia article Z
-### Media
+### 1. Content
+The content in the website is compiled by me
+### 2. Media
 - The theme for the single page application is adapted from ...
 - The photos used in this site were obtained from ...
-### Acknowledgements
+### 3. Acknowledgements
 I received inspiration for this project from X
-Unobtrusive JavaScript: https://blog.teamtreehouse.com/unobtrusive-javascript-important
-https://en.wikipedia.org/wiki/Unobtrusive_JavaScript
 Color Psychology
 https://sg.oberlo.com/blog/color-psychology-color-meanings
-color scheme:
-https://coolors.co/
-Inspiration:
-https://www.awwwards.com/sites/my-walking-challenge
-FontAwesome
 * Rollover Social Media Icons: https://codepen.io/JunaidKhalid/pen/NxaZJw
 * SVG backgrounds
 * SVG image for header banner: https://www.svgbackgrounds.com/?ref=producthunt 

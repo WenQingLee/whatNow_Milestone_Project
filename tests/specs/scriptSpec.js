@@ -14,24 +14,6 @@ describe("googleMap", function() {
 
 
    // Testing the geolocate function
-   describe("geolocate", function() {
-      // Test that geolocate is not null or undefined
-      it("geolocate() should not be null", function() {
-         expect(geolocate()).not.toEqual(null);
-      });
-
-   });
-   
-   // Testing the handleLocationError
-   describe("handleLocationError", function(){
-      // Test if it returns the correct alert message
-      it ("should return an error if geolocation is not enabled", function(){
-         spyOn(window, "alert");
-         handleLocationError(true)
-         expect(window.alert).toHaveBeenCalledWith("Please enable geolocation for the best experience and for the 'Locate Me' button to work.")
-      });
-      
-   });
    
    
    // Testing the autocomplete function

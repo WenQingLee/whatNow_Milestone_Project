@@ -61,7 +61,6 @@ $("#show-details").on("click", function() {
     }
 });
 
-
 // Supporting functions for google map initialisation and form buttons
 
 /*  
